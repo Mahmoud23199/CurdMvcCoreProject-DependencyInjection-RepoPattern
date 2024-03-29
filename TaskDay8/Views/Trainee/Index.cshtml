@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TaskDay8.Models.Trainee>
+
+@{
+    ViewData["Title"] = "Trainee";
+}
+<environment include="Development">
+
+    <div style="background-color:aquamarine">
+        -****Still Devloped-****
+    </div>
+</environment>
+<h1>Trainees </h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+<div>
+    <form asp-action="" method="post">
+        <select name="Id" asp-items="ViewBag.SearchCourse" class="form-control mb-4"></select>
+        <button asp-action="Index" class="btn btn-outline-primary" type="submit">Search</button>
+        <a class="btn btn-outline-success" asp-action="Index" >Refresh</a>
+    </form>
+</div>
+<table class="table mt-4 table table-bordered border-dark table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Track)
+            </th>
+            <th>
+                Courses
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trainee in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Birthdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => trainee.Track.Name)
+                </td>
+                <td>
+                    <select style="width:80px">
+                        <option value="">Courses</option>
+                        @foreach (var course in trainee.Courses)
+                        {
+                            <option value="@course.CourseId">@course.Course.Name</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <div class="d-flex" style="flex-wrap:nowrap">
+                        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@trainee.Id">Edit</a> |
+                        <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@trainee.Id">Details</a> |
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@trainee.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

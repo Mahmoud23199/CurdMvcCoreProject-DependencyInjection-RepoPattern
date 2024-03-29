@@ -1,0 +1,47 @@
+﻿@model TaskDay8.Models.Trainee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Trainee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <partial name="_EditMoodPartial" model="Model" />
+
+            <div class="form-group">
+                <label>Select Courses:</label>
+                @foreach (var course in ViewBag.CourseId)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="Courses" value="@course.Id" required /> @course.Name
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="Courses" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Track" class="control-label"></label>
+                <select asp-for="TrackId" class ="form-control" asp-items="ViewBag.TrackId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary mt-3 mb-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
