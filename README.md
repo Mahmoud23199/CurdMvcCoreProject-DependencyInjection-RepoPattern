@@ -1,6 +1,6 @@
  ASP.NetCore MVC webApp which manages Trainees and thier Tracks and Courses:
  
-	- Createed All CRUD operations to manage  application
+	- Createed All CRUD operations to manage application
  
 	-  EF_Core Code First to create TraineesDB
  
